@@ -1,4 +1,4 @@
-name: Terraform - Deploy Cluster
+name: Terraform - Deploy S3
 
 on:
   workflow_call:

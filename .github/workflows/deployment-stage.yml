@@ -1,4 +1,4 @@
-name: Main
+name: Deployment Stage
 
 on:
   push:

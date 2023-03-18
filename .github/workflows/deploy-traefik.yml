@@ -1,4 +1,4 @@
-name: Terraform - Deploy Cluster
+name: Terraform - Deploy Traefik
 
 on:
   workflow_call:
