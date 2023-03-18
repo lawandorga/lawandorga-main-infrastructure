@@ -1,9 +1,11 @@
 variable "inwx_username" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "inwx_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "cluster_issuer_name" {
@@ -12,13 +14,17 @@ variable "cluster_issuer_name" {
 }
 
 variable "scw_secret_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "scw_access_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "scw_project_id" {
-  type = string
+  type      = string
+  sensitive = true
 }
+
