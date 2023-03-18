@@ -31,5 +31,8 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
       
+      - name: CD To Cluster
+        run: cd 02-setup-cluster
+
       - name: Terraform Apply
         run: terraform apply --auto-approve
