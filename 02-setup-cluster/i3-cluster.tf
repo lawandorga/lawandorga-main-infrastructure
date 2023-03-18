@@ -12,3 +12,8 @@ resource "scaleway_k8s_pool" "pool" {
   node_type  = "DEV1-M"
   size       = 1
 }
+
+resource "scaleway_registry_namespace" "registry" {
+  name      = "lawandorga-registry"
+  is_public = false
+}

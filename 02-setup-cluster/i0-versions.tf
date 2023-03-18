@@ -4,6 +4,10 @@ terraform {
       source  = "scaleway/scaleway"
       version = "~> 2.13"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.18"
+    }
   }
   backend "s3" {
     bucket                      = "lawandorga-main-infrastructure"
