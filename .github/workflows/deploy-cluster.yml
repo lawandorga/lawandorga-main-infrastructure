@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      TF_scw_access_key: ${{ secrets.scw_access_key }}
-      TF_scw_secret_key: ${{ secrets.scw_secret_key }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.scw_access_key }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.scw_secret_key }}
       TF_scw_project_id: ${{ secrets.scw_project_id }}
 
     outputs:
