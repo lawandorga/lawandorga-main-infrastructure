@@ -30,13 +30,8 @@ jobs:
 
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
-      
-      - name: CD To Cluster
-        run: |
-          cd 02-setup-cluster/
-          ls
 
       - name: Terraform Apply
         run: |
-          ls
-          terraform plan
+          cd 02-setup-cluster/
+          terraform apply --auto-approve
