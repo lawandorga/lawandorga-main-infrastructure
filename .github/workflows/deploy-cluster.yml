@@ -19,6 +19,8 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.scw_access_key }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.scw_secret_key }}
       TF_scw_project_id: ${{ secrets.scw_project_id }}
+      SCW_ACCESS_KEY: ${{ secrets.scw_access_key }}
+      SCW_SECRET_KEY: ${{ secrets.scw_secret_key }}
 
     outputs:
       artifact: ${{ steps.output.outputs.artifact }}
@@ -35,4 +37,4 @@ jobs:
         run: |
           cd 02-setup-cluster/
           terraform init
-          terraform apply --auto-approve
+          terraform apply -auto-approve -input=false
