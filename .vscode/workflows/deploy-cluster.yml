@@ -1,0 +1,38 @@
+name: Terraform - Deploy Cluster
+
+on:
+  workflow_call:
+    secrets:
+      scw_access_key:
+        required: true
+        type: string
+      scw_secret_key:
+        required: true
+        type: string
+      scw_project_id:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-22.04
+
+    env:
+      TF_scw_access_key: ${{ secrets.scw_access_key }}
+      TF_scw_secret_key: ${{ secrets.scw_secret_key }}
+      TF_scw_project_id: ${{ secrets.scw_project_id }}
+
+    outputs:
+      artifact: ${{ steps.output.outputs.artifact }}
+      version: ${{ steps.output.outputs.version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 
+
+      - name: Set Up Terraform
+        uses: hashicorp/setup-terraform@v2
+      
+      - name: Terraform Apply
+        run: terraform apply --auto-approve

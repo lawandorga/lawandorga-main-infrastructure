@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  # Adjust the name here accordingly
+  name: ${issuer_name}
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: it@law-orga.de
+    # Name of a secret used to store the ACME account private key from step 3
+    privateKeySecretRef:
+      name: cluster-issuer-private-key
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      - dns01:
+          webhook:
+            groupName: cert-manager-webhook-inwx.smueller18.gitlab.com
+            solverName: inwx
+            config:
+              usernameSecretKeyRef:
+                name: inwx-credentials
+                key: username
+              passwordSecretKeyRef:
+                name: inwx-credentials
+                key: password

@@ -1,0 +1,11 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_cluster:
+    name: Deploy Cluster
+    uses: ./.github/workflows/deploy-cluster.yml
