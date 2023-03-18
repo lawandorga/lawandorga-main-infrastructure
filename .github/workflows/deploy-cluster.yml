@@ -5,13 +5,10 @@ on:
     secrets:
       scw_access_key:
         required: true
-        type: string
       scw_secret_key:
         required: true
-        type: string
       scw_project_id:
         required: true
-        type: string
 
 jobs:
   deploy:
