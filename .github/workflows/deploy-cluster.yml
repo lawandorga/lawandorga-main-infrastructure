@@ -37,4 +37,6 @@ jobs:
           ls
 
       - name: Terraform Apply
-        run: terraform plan
+        run: |
+          ls
+          terraform plan
