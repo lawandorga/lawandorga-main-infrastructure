@@ -21,3 +21,19 @@ jobs:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+
+  deploy_cert_manager:
+    name: Deploy Cert Manager
+    uses: ./.github/workflows/deploy-cert-manager.yml
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+
+  deploy_traefik:
+    name: Deploy Traefik
+    uses: ./.github/workflows/deploy-traefik.yml
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
