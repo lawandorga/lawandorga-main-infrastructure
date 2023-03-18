@@ -33,6 +33,6 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          cd 02-setup-cluster/
+          cd 01-setup-s3-for-remote-state/
           terraform init
           terraform apply --auto-approve -input=false
