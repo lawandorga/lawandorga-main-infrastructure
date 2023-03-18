@@ -33,8 +33,8 @@ jobs:
       
       - name: CD To Cluster
         run: |
-          cd 02-setup-cluster
+          cd 02-setup-cluster/
           ls
 
       - name: Terraform Apply
-        run: terraform apply --auto-approve
+        run: terraform plan
