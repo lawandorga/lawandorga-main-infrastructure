@@ -1,4 +1,4 @@
-name: Terraform - Deploy S3
+name: Deployment Stage - Deploy S3
 
 on:
   workflow_call:

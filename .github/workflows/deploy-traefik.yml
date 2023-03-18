@@ -1,4 +1,4 @@
-name: Terraform - Deploy Traefik
+name: Deployment Stage - Deploy Traefik
 
 on:
   workflow_call:

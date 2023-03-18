@@ -1,4 +1,4 @@
-name: Terraform - Deploy Cluster
+name: Deployment Stage - Deploy Cluster
 
 on:
   workflow_call:

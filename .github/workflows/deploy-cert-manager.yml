@@ -1,4 +1,4 @@
-name: Terraform - Deploy Cert Manager
+name: Deployment Stage - Deploy Cert Manager
 
 on:
   workflow_call:
