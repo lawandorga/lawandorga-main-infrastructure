@@ -1,5 +1,6 @@
 # Custom
 *.tfvars
+.DS_Store
 
 # Local .terraform directories
 **/.terraform/*

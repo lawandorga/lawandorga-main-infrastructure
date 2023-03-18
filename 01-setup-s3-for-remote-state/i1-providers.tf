@@ -5,6 +5,17 @@ terraform {
       version = "~> 2.13"
     }
   }
+  # WATCH OUT: this is circular because this terraform config creates this bucket
+  # in case you need to redeploy the whole infrastructure you should run apply 
+  # with a local backend first
+  backend "s3" {
+    bucket                      = "lawandorga-main-infrastructure"
+    key                         = "remote-state.tfstate"
+    region                      = "fr-par"
+    endpoint                    = "https://s3.fr-par.scw.cloud"
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
   required_version = ">= 1.0.0"
 }
 
