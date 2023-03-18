@@ -9,3 +9,7 @@ jobs:
   deploy_cluster:
     name: Deploy Cluster
     uses: ./.github/workflows/deploy-cluster.yml
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
