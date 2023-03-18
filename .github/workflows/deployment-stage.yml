@@ -29,6 +29,8 @@ jobs:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+      inwx_username: ${{ secrets.INWX_USERNAME }}
+      inwx_password: ${{ secrets.INWX_PASSWORD }}
 
   deploy_traefik:
     name: Deploy Traefik
