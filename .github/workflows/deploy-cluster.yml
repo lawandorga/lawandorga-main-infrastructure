@@ -34,4 +34,5 @@ jobs:
       - name: Terraform Apply
         run: |
           cd 02-setup-cluster/
+          terraform init
           terraform apply --auto-approve
