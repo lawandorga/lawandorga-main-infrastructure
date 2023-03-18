@@ -32,7 +32,9 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       
       - name: CD To Cluster
-        run: cd 02-setup-cluster
+        run: |
+          cd 02-setup-cluster
+          ls
 
       - name: Terraform Apply
         run: terraform apply --auto-approve
