@@ -9,7 +9,7 @@ resource "scaleway_k8s_cluster" "cluster" {
 resource "scaleway_k8s_pool" "pool" {
   cluster_id = scaleway_k8s_cluster.cluster.id
   name       = "lawandorga_pool"
-  node_type  = "DEV1-M"
+  node_type  = "DEV1-XL"
   size       = 1
 }
 
