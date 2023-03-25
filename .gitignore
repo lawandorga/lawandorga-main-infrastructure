@@ -1,6 +1,7 @@
 # Custom
 *.tfvars
 .DS_Store
+*kubeconfig*
 
 # Local .terraform directories
 **/.terraform/*
