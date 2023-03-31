@@ -31,8 +31,8 @@ jobs:
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
 
   deploy_traefik:
-    name: Deploy Traefik
-    uses: ./.github/workflows/deployment-stage--deploy-traefik.yml
+    name: Deploy Nginx
+    uses: ./.github/workflows/deployment-stage--deploy-nginx.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}

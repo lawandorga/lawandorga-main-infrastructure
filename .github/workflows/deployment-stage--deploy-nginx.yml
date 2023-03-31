@@ -35,6 +35,6 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          cd 04-setup-traefik/
+          cd 04-setup-nginx/
           terraform init
           terraform apply --auto-approve -input=false
