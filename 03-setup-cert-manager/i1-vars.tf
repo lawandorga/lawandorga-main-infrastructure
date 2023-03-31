@@ -1,13 +1,3 @@
-variable "inwx_username" {
-  type      = string
-  sensitive = true
-}
-
-variable "inwx_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "cluster_issuer_name" {
   type    = string
   default = "cluster-issuer"

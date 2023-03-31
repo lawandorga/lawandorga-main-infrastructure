@@ -14,14 +14,6 @@ spec:
       name: cluster-issuer-private-key
     # Enable the HTTP-01 challenge provider
     solvers:
-      - dns01:
-          webhook:
-            groupName: cert-manager-webhook-inwx.smueller18.gitlab.com
-            solverName: inwx
-            config:
-              usernameSecretKeyRef:
-                name: inwx-credentials
-                key: username
-              passwordSecretKeyRef:
-                name: inwx-credentials
-                key: password
+      - http01:
+          ingress:
+            class: nginx

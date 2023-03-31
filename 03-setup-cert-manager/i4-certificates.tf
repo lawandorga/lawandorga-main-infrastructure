@@ -17,15 +17,6 @@ resource "helm_release" "cert_manager" {
   }
 }
 
-resource "helm_release" "cert_manager_webhook_inwx" {
-  name       = "cert-manager-webhook-inwx"
-  repository = "https://smueller18.gitlab.io/helm-charts"
-  chart      = "cert-manager-webhook-inwx"
-  version    = "0.5.0"
-  namespace  = kubernetes_namespace.cert_manager.metadata.0.name
-  depends_on = [helm_release.cert_manager]
-}
-
 resource "kubernetes_manifest" "cert_issuer" {
   depends_on = [helm_release.cert_manager]
   manifest = yamldecode(templatefile(

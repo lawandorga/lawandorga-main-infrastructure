@@ -8,7 +8,7 @@ on:
 jobs:
   deploy_s3:
     name: Deploy S3
-    uses: ./.github/workflows/deploy-s3.yml
+    uses: ./.github/workflows/deployment-stage--deploy-s3.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
@@ -16,7 +16,7 @@ jobs:
 
   deploy_cluster:
     name: Deploy Cluster
-    uses: ./.github/workflows/deploy-cluster.yml
+    uses: ./.github/workflows/deployment-stage--deploy-cluster.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
@@ -24,17 +24,15 @@ jobs:
 
   deploy_cert_manager:
     name: Deploy Cert Manager
-    uses: ./.github/workflows/deploy-cert-manager.yml
+    uses: ./.github/workflows/deployment-stage--deploy-cert-manager.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
-      inwx_username: ${{ secrets.INWX_USERNAME }}
-      inwx_password: ${{ secrets.INWX_PASSWORD }}
 
   deploy_traefik:
     name: Deploy Traefik
-    uses: ./.github/workflows/deploy-traefik.yml
+    uses: ./.github/workflows/deployment-stage--deploy-traefik.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
