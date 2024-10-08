@@ -1,4 +1,10 @@
+resource "scaleway_vpc_private_network" "vpc" {
+  name = "kapsule-20240502"
+  tags = []
+}
+
 resource "scaleway_k8s_cluster" "cluster" {
+  private_network_id          = scaleway_vpc_private_network.vpc.id
   name                        = "lawandorga_cluster"
   version                     = "1.26.0"
   cni                         = "cilium"
