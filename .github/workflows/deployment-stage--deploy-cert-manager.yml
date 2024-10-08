@@ -37,4 +37,4 @@ jobs:
         run: |
           cd 03-setup-cert-manager/
           terraform init
-          terraform apply --auto-approve -input=false
+          terraform plan -input=false -detailed-exitcode
