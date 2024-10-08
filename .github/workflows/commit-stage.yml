@@ -1,4 +1,4 @@
-name: Deployment Stage
+name: Commit Stage
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   deploy_s3:
     name: Deploy S3
-    uses: ./.github/workflows/deployment-stage--deploy-s3.yml
+    uses: ./.github/workflows/commit-stage--deploy-s3.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
@@ -16,7 +16,7 @@ jobs:
 
   deploy_cluster:
     name: Deploy Cluster
-    uses: ./.github/workflows/deployment-stage--deploy-cluster.yml
+    uses: ./.github/workflows/commit-stage--deploy-cluster.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
@@ -24,7 +24,7 @@ jobs:
 
   deploy_cert_manager:
     name: Deploy Cert Manager
-    uses: ./.github/workflows/deployment-stage--deploy-cert-manager.yml
+    uses: ./.github/workflows/commit-stage--deploy-cert-manager.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
@@ -32,7 +32,7 @@ jobs:
 
   deploy_traefik:
     name: Deploy Nginx
-    uses: ./.github/workflows/deployment-stage--deploy-nginx.yml
+    uses: ./.github/workflows/commit-stage--deploy-nginx.yml
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}

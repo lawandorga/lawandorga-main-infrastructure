@@ -1,4 +1,4 @@
-name: Deployment Stage - Deploy Cluster
+name: Deployment Stage - Deploy Cert Manager
 
 on:
   workflow_call:
@@ -11,8 +11,8 @@ on:
         required: true
 
 jobs:
-  deploy:
-    name: Deploy
+  plan:
+    name: Plan
     runs-on: ubuntu-22.04
 
     env:
@@ -21,10 +21,6 @@ jobs:
       TF_VAR_scw_project_id: ${{ secrets.scw_project_id }}
       AWS_ACCESS_KEY_ID: ${{ secrets.scw_access_key }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.scw_secret_key }}
-
-    outputs:
-      artifact: ${{ steps.output.outputs.artifact }}
-      version: ${{ steps.output.outputs.version }}
 
     steps:
       - name: Checkout
@@ -35,6 +31,6 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          cd 02-setup-cluster/
+          cd 03-setup-cert-manager/
           terraform init
           terraform plan -input=false -detailed-exitcode
