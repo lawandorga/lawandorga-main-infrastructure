@@ -9,12 +9,19 @@ terraform {
   # in case you need to redeploy the whole infrastructure you should run apply 
   # with a local backend first
   backend "s3" {
-    bucket                      = "lawandorga-main-infrastructure"
-    key                         = "remote-state.tfstate"
-    region                      = "fr-par"
-    endpoint                    = "https://s3.fr-par.scw.cloud"
+    bucket = "lawandorga-main-infrastructure"
+    key    = "remote-state.tfstate"
+    region = "fr-par"
+
     skip_region_validation      = true
     skip_credentials_validation = true
+    skip_requesting_account_id  = true
+
+    endpoints = {
+      s3 = "https://s3.fr-par.scw.cloud"
+    }
+
+    profile = "lawandorga"
   }
   required_version = ">= 1.0.0"
 }

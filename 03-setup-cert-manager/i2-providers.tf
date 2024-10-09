@@ -9,12 +9,20 @@ provider "scaleway" {
 data "terraform_remote_state" "state" {
   backend = "s3"
   config = {
-    bucket                      = "lawandorga-main-infrastructure"
-    key                         = "cluster.tfstate"
-    region                      = "fr-par"
-    endpoint                    = "https://s3.fr-par.scw.cloud"
+    bucket = "lawandorga-main-infrastructure"
+    key    = "cluster.tfstate"
+    region = "fr-par"
+
+    endpoints = {
+      s3 = "https://s3.fr-par.scw.cloud"
+    }
+
     skip_region_validation      = true
     skip_credentials_validation = true
+    skip_requesting_account_id  = true
+
+    access_key = var.scw_access_key
+    secret_key = var.scw_secret_key
   }
 }
 

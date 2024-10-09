@@ -14,12 +14,19 @@ terraform {
     }
   }
   backend "s3" {
-    bucket                      = "lawandorga-main-infrastructure"
-    key                         = "cert-manager.tfstate"
-    region                      = "fr-par"
-    endpoint                    = "https://s3.fr-par.scw.cloud"
+    bucket = "lawandorga-main-infrastructure"
+    key    = "cert-manager.tfstate"
+    region = "fr-par"
+
     skip_region_validation      = true
     skip_credentials_validation = true
+    skip_requesting_account_id  = true
+
+    endpoints = {
+      s3 = "https://s3.fr-par.scw.cloud"
+    }
+
+    profile = "lawandorga"
   }
   required_version = ">= 1.0.0"
 }
