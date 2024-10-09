@@ -13,10 +13,14 @@ resource "scaleway_k8s_cluster" "cluster" {
 }
 
 resource "scaleway_k8s_pool" "pool" {
-  cluster_id = scaleway_k8s_cluster.cluster.id
-  name       = "lawandorga_pool"
-  node_type  = "DEV1-XL"
-  size       = 1
+  cluster_id  = scaleway_k8s_cluster.cluster.id
+  name        = "lawandorga_pool"
+  node_type   = "DEV1-XL"
+  size        = 1
+  min_size    = 1
+  max_size    = 2
+  autoscaling = true
+  autohealing = true
 }
 
 resource "scaleway_registry_namespace" "registry" {
