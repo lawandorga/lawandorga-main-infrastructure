@@ -46,16 +46,11 @@ jobs:
         run: |
           terraform init
           terraform plan -detailed-exitcode
-          echo "Exit code is: $?"
-          CODE=$?
-          echo $CODE
           echo "::set-output name=exitcode::$?"
       
       - name: Check Plan Result
         if: steps.plan.outputs.exitcode == '2' || steps.plan.outputs.exitcode == '1'
-        run: exit 1
+        run: |
+          echo "Changes Detected Or Terraform Plan Failed"
+          exit 1
         shell: bash
-      
-      - name: No Changes
-        if: steps.plan.outputs.exitcode == '0'
-        run: echo "No changes detected"
