@@ -1,5 +1,5 @@
-resource "kubernetes_namespace" "testing" {
-  metadata {
-    name = "guestbook"
-  }
-}
+# resource "kubernetes_namespace" "testing" {
+#   metadata {
+#     name = "guestbook"
+#   }
+# }

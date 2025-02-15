@@ -46,7 +46,7 @@ jobs:
         run: |
           terraform init
           terraform plan -detailed-exitcode
-          echo "::set-output name=exitcode::$?"
+          echo "exitcode=$?" >> $GITHUB_OUTPUT
       
       - name: Check Plan Result
         if: steps.plan.outputs.exitcode == '2' || steps.plan.outputs.exitcode == '1'
