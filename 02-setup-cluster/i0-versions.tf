@@ -2,11 +2,11 @@ terraform {
   required_providers {
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "~> 2.13"
+      version = "~> 2.49"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.18"
+      version = "~> 2.35"
     }
   }
   backend "s3" {
