@@ -44,3 +44,15 @@ jobs:
         run: |
           terraform init
           terraform plan -detailed-exitcode || [ $? -eq 2 ]
+      
+      - name: Check Terraform Plan Result
+        run: |
+          if [ $? -eq 2 ]; then
+            echo "Changes Detected"
+            exit 1
+          elif [ $? -ne 0 ]; then
+            echo "Plan Failed"
+            exit 1
+          else
+            echo "Up To Date"
+          fi
