@@ -1,4 +1,4 @@
-name: Deployment Stage - Validate Cluster
+name: Commit Stage - Validate S3
 
 on:
   workflow_call:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   plan:
-    name: Plan
+    name: plan
     runs-on: ubuntu-22.04
 
     env:
@@ -36,6 +36,6 @@ jobs:
 
       - name: Terraform Validate
         run: |
-          cd 02-setup-cluster/
+          cd 01-setup-s3-for-remote-state/
           terraform init
           terraform plan -detailed-exitcode

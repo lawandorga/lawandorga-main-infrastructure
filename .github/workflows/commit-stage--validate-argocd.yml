@@ -1,4 +1,4 @@
-name: Deployment Stage - Validate Traefik
+name: Commit Stage - Validate ArgoCD
 
 on:
   workflow_call:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   plan:
-    name: Plan
+    name: plan
     runs-on: ubuntu-22.04
 
     env:
@@ -34,8 +34,8 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.scw_access_key }} --profile lawandorga
           aws configure set aws_secret_access_key ${{ secrets.scw_secret_key }} --profile lawandorga
 
-      - name: Terraform Apply
+      - name: Terraform Validate
         run: |
-          cd 04-setup-nginx/
+          cd 01-setup-s3-for-remote-state/
           terraform init
           terraform plan -detailed-exitcode

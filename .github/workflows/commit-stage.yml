@@ -6,34 +6,36 @@ on:
       - main
 
 jobs:
-  deploy_s3:
-    name: Deploy S3
-    uses: ./.github/workflows/commit-stage--deploy-s3.yml
+  validate_s3:
+    name: Validate S3
+    uses: ./.github/workflows/commit-stage--validate-terraform.yml
+    with:
+      path: 01-setup-s3-for-remote-state
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
 
-  deploy_cluster:
-    name: Deploy Cluster
-    uses: ./.github/workflows/commit-stage--deploy-cluster.yml
-    secrets:
-      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  # validate_cluster:
+  #   name: Validate Cluster
+  #   uses: ./.github/workflows/commit-stage--validate-cluster.yml
+  #   secrets:
+  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
 
-  deploy_cert_manager:
-    name: Deploy Cert Manager
-    uses: ./.github/workflows/commit-stage--deploy-cert-manager.yml
-    secrets:
-      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  # validate_cert_manager:
+  #   name: Validate Cert Manager
+  #   uses: ./.github/workflows/commit-stage--validate-cert-manager.yml
+  #   secrets:
+  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
 
-  deploy_traefik:
-    name: Deploy Nginx
-    uses: ./.github/workflows/commit-stage--deploy-nginx.yml
-    secrets:
-      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  # validate_traefik:
+  #   name: Validate Nginx
+  #   uses: ./.github/workflows/commit-stage--validate-nginx.yml
+  #   secrets:
+  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
