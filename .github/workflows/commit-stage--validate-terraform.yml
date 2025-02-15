@@ -54,3 +54,4 @@ jobs:
           else
             echo "No changes"
           fi
+          exit 1
