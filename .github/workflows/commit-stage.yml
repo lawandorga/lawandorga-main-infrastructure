@@ -16,26 +16,42 @@ jobs:
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
 
-  # validate_cluster:
-  #   name: Validate Cluster
-  #   uses: ./.github/workflows/commit-stage--validate-cluster.yml
-  #   secrets:
-  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  validate_cluster:
+    name: Validate Cluster
+    uses: ./.github/workflows/commit-stage--validate-terraform.yml
+    with:
+      path: 02-setup-cluster
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }} 
 
-  # validate_cert_manager:
-  #   name: Validate Cert Manager
-  #   uses: ./.github/workflows/commit-stage--validate-cert-manager.yml
-  #   secrets:
-  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  validate_cert_manager:
+    name: Validate Cert Manager
+    uses: ./.github/workflows/commit-stage--validate-terraform.yml
+    with:
+      path: 03-setup-cert-manager
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }} 
 
-  # validate_traefik:
-  #   name: Validate Nginx
-  #   uses: ./.github/workflows/commit-stage--validate-nginx.yml
-  #   secrets:
-  #     scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
-  #     scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
-  #     scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  validate_traefik:
+    name: Validate Nginx
+    uses: ./.github/workflows/commit-stage--validate-terraform.yml
+    with:
+      path: 04-setup-nginx
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
+  
+  validate_argocd:
+    name: Validate ArgoCD
+    uses: ./.github/workflows/commit-stage--validate-terraform.yml
+    with:
+      path: 05-argocd
+    secrets:
+      scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
+      scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
+      scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}

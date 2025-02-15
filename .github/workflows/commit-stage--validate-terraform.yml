@@ -24,6 +24,8 @@ jobs:
         working-directory: ${{ inputs.path }}
 
     env:
+      TF_VAR_scw_access_key: ${{ secrets.scw_access_key }}
+      TF_VAR_scw_secret_key: ${{ secrets.scw_secret_key }}
       TF_VAR_scw_project_id: ${{ secrets.scw_project_id }}
 
     steps:
