@@ -43,4 +43,4 @@ jobs:
       - name: Terraform Validate
         run: |
           terraform init
-          terraform plan -detailed-exitcode
+          terraform plan -detailed-exitcode || [ $? -eq 2 ]
