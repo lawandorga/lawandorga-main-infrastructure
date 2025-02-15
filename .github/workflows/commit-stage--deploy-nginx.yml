@@ -29,8 +29,13 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: Setup AWS Credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.scw_access_key }} --profile lawandorga
+          aws configure set aws_secret_access_key ${{ secrets.scw_secret_key }} --profile lawandorga
+
       - name: Terraform Apply
         run: |
           cd 04-setup-nginx/
           terraform init
-          terraform validate
+          terraform plan -detailed-exitcode
