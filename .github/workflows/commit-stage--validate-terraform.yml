@@ -43,15 +43,4 @@ jobs:
       - name: Terraform Validate
         run: |
           terraform init
-          terraform plan -detailed-exitcode || exit 1
-          CODE=$?
-          if [ $CODE -eq 2 ]; then
-            echo "Terraform plan: Changes Detected"
-            exit 1
-          elif [ $CODE -eq 1 ]; then
-            echo "Terraform plan: Error"
-            exit 1
-          else
-            echo "No changes"
-          fi
-          exit 1
+          terraform plan -detailed-exitcode; CODE=$?; if [[ $CODE -eq 2 ]]; then exit 1; elif [[ $CODE -eq 1 ]]; then exit 1; else exit 0; fi
