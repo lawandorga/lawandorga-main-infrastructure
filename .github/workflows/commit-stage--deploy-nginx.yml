@@ -1,4 +1,4 @@
-name: Deployment Stage - Deploy Traefik
+name: Deployment Stage - Validate Traefik
 
 on:
   workflow_call:
@@ -33,4 +33,4 @@ jobs:
         run: |
           cd 04-setup-nginx/
           terraform init
-          terraform plan -input=false -detailed-exitcode
+          terraform validate

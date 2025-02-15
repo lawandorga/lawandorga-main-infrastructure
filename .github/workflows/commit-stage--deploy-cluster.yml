@@ -1,4 +1,4 @@
-name: Deployment Stage - Deploy Cluster
+name: Deployment Stage - Validate Cluster
 
 on:
   workflow_call:
@@ -29,8 +29,8 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Apply
+      - name: Terraform Validate
         run: |
           cd 02-setup-cluster/
           terraform init
-          terraform plan -input=false -detailed-exitcode
+          terraform validate

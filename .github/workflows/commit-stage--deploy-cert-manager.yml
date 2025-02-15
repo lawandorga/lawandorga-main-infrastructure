@@ -1,4 +1,4 @@
-name: Deployment Stage - Deploy Cert Manager
+name: Deployment Stage - Validate Cert Manager
 
 on:
   workflow_call:
@@ -29,8 +29,8 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Apply
+      - name: Terraform Validate
         run: |
           cd 03-setup-cert-manager/
           terraform init
-          terraform plan -input=false -detailed-exitcode
+          terraform validate

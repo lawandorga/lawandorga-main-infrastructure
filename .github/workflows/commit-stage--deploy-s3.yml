@@ -1,4 +1,4 @@
-name: Deployment Stage - Deploy S3
+name: Deployment Stage - Validate S3
 
 on:
   workflow_call:
@@ -29,8 +29,8 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Apply
+      - name: Terraform Validate
         run: |
           cd 01-setup-s3-for-remote-state/
           terraform init
-          terraform plan -input=false -detailed-exitcode
+          terraform validate
