@@ -46,6 +46,9 @@ jobs:
         run: |
           terraform init
           terraform plan -detailed-exitcode
+          echo "Exit code is: $?"
+          CODE=$?
+          echo $CODE
           echo "::set-output name=exitcode::$?"
       
       - name: Check Plan Result
