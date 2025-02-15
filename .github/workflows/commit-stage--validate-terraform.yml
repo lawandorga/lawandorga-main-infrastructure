@@ -41,6 +41,7 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.scw_secret_key }} --profile lawandorga
 
       - name: Terraform Validate
+        shell: bash
         run: |
           terraform init
           terraform plan -detailed-exitcode; CODE=$?; if [[ $CODE -eq 2 ]]; then exit 1; elif [[ $CODE -eq 1 ]]; then exit 1; else exit 0; fi
