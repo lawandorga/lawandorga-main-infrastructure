@@ -43,7 +43,7 @@ jobs:
       - name: Terraform Validate
         run: |
           terraform init
-          terraform plan -detailed-exitcode || [ $? -eq 2 ]
+          terraform plan -detailed-exitcode
       
       - name: Check Terraform Plan Result
         run: |
