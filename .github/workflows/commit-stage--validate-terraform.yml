@@ -52,5 +52,6 @@ jobs:
         if: steps.plan.outputs.exitcode == '2' || steps.plan.outputs.exitcode == '1'
         run: |
           echo "Changes Detected Or Terraform Plan Failed"
+          echo "Check The Previous Terraform Validate Step"
           exit 1
         shell: bash
