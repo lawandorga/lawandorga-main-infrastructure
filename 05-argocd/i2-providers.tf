@@ -1,0 +1,45 @@
+provider "scaleway" {
+  access_key = var.scw_access_key
+  secret_key = var.scw_secret_key
+  project_id = var.scw_project_id
+  zone       = "fr-par-1"
+  region     = "fr-par"
+}
+
+data "terraform_remote_state" "state" {
+  backend = "s3"
+  config = {
+    bucket = "lawandorga-main-infrastructure"
+    key    = "cluster.tfstate"
+    region = "fr-par"
+
+    endpoints = {
+      s3 = "https://s3.fr-par.scw.cloud"
+    }
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true
+
+    access_key = var.scw_access_key
+    secret_key = var.scw_secret_key
+  }
+}
+
+data "scaleway_k8s_cluster" "cluster" {
+  cluster_id = data.terraform_remote_state.state.outputs.cluster_id
+}
+
+provider "kubernetes" {
+  host                   = data.scaleway_k8s_cluster.cluster.kubeconfig.0.host
+  token                  = data.scaleway_k8s_cluster.cluster.kubeconfig.0.token
+  cluster_ca_certificate = base64decode(data.scaleway_k8s_cluster.cluster.kubeconfig.0.cluster_ca_certificate)
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.scaleway_k8s_cluster.cluster.kubeconfig.0.host
+    token                  = data.scaleway_k8s_cluster.cluster.kubeconfig.0.token
+    cluster_ca_certificate = base64decode(data.scaleway_k8s_cluster.cluster.kubeconfig.0.cluster_ca_certificate)
+  }
+}
