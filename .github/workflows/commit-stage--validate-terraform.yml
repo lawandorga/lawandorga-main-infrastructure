@@ -44,9 +44,6 @@ jobs:
         run: |
           terraform init
           terraform plan -detailed-exitcode
-      
-      - name: Check Terraform Plan Result
-        run: |
           if [ $? -eq 2 ]; then
             echo "Changes Detected"
             exit 1
