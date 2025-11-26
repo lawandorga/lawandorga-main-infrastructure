@@ -6,7 +6,7 @@ resource "kubernetes_namespace" "nginx" {
 
 module "nginx-controller" {
   source    = "terraform-iaac/nginx-controller/helm"
-  version   = "2.1.1"
+  version   = "2.3.0"
   namespace = kubernetes_namespace.nginx.metadata.0.name
 
   # only specified because the default ones were already in use who knows why
