@@ -2,11 +2,11 @@ terraform {
   required_providers {
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "~> 2.49"
+      version = "~> 2.63"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.35"
+      version = "~> 2.38"
     }
     helm = {
       source  = "hashicorp/helm"
