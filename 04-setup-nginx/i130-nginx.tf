@@ -4,16 +4,58 @@ resource "kubernetes_namespace" "nginx" {
   }
 }
 
-module "nginx-controller" {
-  source    = "terraform-iaac/nginx-controller/helm"
-  version   = "3.0.0"
-  namespace = kubernetes_namespace.nginx.metadata.0.name
+resource "helm_release" "nginx_ingress" {
+  name       = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  version    = "4.14.0" # or latest
+  namespace  = kubernetes_namespace.nginx.metadata.0.name
 
-  # only specified because the default ones were already in use who knows why
-  service_nodePort_http  = 32080
-  service_nodePort_https = 32433
-
-  ip_address = "51.159.10.204"
-
-  additional_set = []
+  set = [
+    {
+      name  = "controller.kind"
+      value = "DaemonSet"
+    },
+    {
+      name  = "controller.ingressClassResource.name"
+      value = "nginx"
+    },
+    {
+      name  = "controller.ingressClassResource.default"
+      value = true
+    },
+    {
+      name  = "controller.daemonset.useHostPort"
+      value = false
+    },
+    {
+      name  = "controller.service.externalTrafficPolicy"
+      value = "Local"
+    },
+    {
+      name  = "controller.publishService.enabled"
+      value = true
+    },
+    {
+      name  = "controller.resources.requests.memory"
+      type  = "string"
+      value = "140Mi"
+    },
+    {
+      name  = "controller.allowSnippetAnnotations"
+      value = "true"
+    },
+    {
+      name  = "controller.service.loadBalancerIP"
+      value = "51.159.10.204"
+    },
+    {
+      name  = "controller.service.nodePorts.http"
+      value = "32628"
+    },
+    {
+      name  = "controller.service.nodePorts.https"
+      value = "30806"
+    }
+  ]
 }
