@@ -2,7 +2,7 @@ terraform {
   required_providers {
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "~> 2.49"
+      version = "~> 2.63"
     }
   }
   # WATCH OUT: this is circular because this terraform config creates this bucket
