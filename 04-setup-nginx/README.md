@@ -1,0 +1,1 @@
+this nginx setup is destroyed
