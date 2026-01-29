@@ -55,10 +55,30 @@ resource "kubernetes_manifest" "gateway" {
           }
         },
         {
-          name     = "https-frontend"
+          name     = "https-frontend-www"
           protocol = "HTTPS"
           port     = 443
-          hostname = "*.law-orga.de"
+          hostname = "www.law-orga.de"
+          allowedRoutes = {
+            namespaces = {
+              from = "All"
+            }
+          }
+          tls = {
+            mode = "Terminate"
+            certificateRefs = [
+              {
+                kind = "Secret"
+                name = "frontend-certificate"
+              }
+            ]
+          }
+        },
+        {
+          name     = "https-frontend-apex"
+          protocol = "HTTPS"
+          port     = 443
+          hostname = "law-orga.de"
           allowedRoutes = {
             namespaces = {
               from = "All"
@@ -99,6 +119,26 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "auth.law-orga.de"
+          allowedRoutes = {
+            namespaces = {
+              from = "All"
+            }
+          }
+          tls = {
+            mode = "Terminate"
+            certificateRefs = [
+              {
+                kind = "Secret"
+                name = "backend-certificate"
+              }
+            ]
+          }
+        },
+        {
+          name     = "https-calendar"
+          protocol = "HTTPS"
+          port     = 443
+          hostname = "calendar.law-orga.de"
           allowedRoutes = {
             namespaces = {
               from = "All"
