@@ -36,21 +36,21 @@ jobs:
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }} 
 
-  validate_traefik:
-    name: Validate Nginx
+  validate_envoy:
+    name: Validate Envoy
     uses: ./.github/workflows/commit-stage--validate-terraform.yml
     with:
-      path: 04-setup-nginx
+      path: 07-envoy
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
       scw_secret_key: ${{ secrets.SCW_SECRET_KEY }}
   
-  validate_argocd:
-    name: Validate ArgoCD
+  validate_secrets:
+    name: Validate Secrets
     uses: ./.github/workflows/commit-stage--validate-terraform.yml
     with:
-      path: 05-argocd
+      path: 05-secrets
     secrets:
       scw_access_key: ${{ secrets.SCW_ACCESS_KEY }}
       scw_project_id: ${{ secrets.SCW_PROJECT_ID }}
