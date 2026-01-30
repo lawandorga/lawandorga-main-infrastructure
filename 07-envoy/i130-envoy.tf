@@ -8,7 +8,7 @@ resource "helm_release" "envoy_gateway" {
   name       = "envoy-gateway"
   repository = "oci://docker.io/envoyproxy"
   chart      = "gateway-helm"
-  version    = "v1.2.4" # or latest
+  version    = "v1.5.8"
   namespace  = kubernetes_namespace.envoy_gateway_system.metadata.0.name
 
   set = [
@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "gateway" {
     kind       = "Gateway"
     metadata = {
       name      = "lawandorga-gateway"
-      namespace = "default" # or your app namespace
+      namespace = "default"
     }
     spec = {
       gatewayClassName = "envoy"
@@ -48,22 +48,12 @@ resource "kubernetes_manifest" "gateway" {
           name     = "http"
           protocol = "HTTP"
           port     = 80
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
         },
         {
           name     = "https-frontend-www"
           protocol = "HTTPS"
           port     = 443
           hostname = "www.law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
@@ -79,11 +69,6 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
@@ -99,17 +84,12 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "backend.law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
               {
                 kind = "Secret"
-                name = "backend-certificate"
+                name = "lawandorga-backend-service-certificate"
               }
             ]
           }
@@ -119,17 +99,12 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "auth.law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
               {
                 kind = "Secret"
-                name = "backend-certificate"
+                name = "lawandorga-backend-service-certificate"
               }
             ]
           }
@@ -139,17 +114,12 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "calendar.law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
               {
                 kind = "Secret"
-                name = "backend-certificate"
+                name = "lawandorga-backend-service-certificate"
               }
             ]
           }
@@ -159,11 +129,6 @@ resource "kubernetes_manifest" "gateway" {
           protocol = "HTTPS"
           port     = 443
           hostname = "statistics.law-orga.de"
-          allowedRoutes = {
-            namespaces = {
-              from = "All"
-            }
-          }
           tls = {
             mode = "Terminate"
             certificateRefs = [
