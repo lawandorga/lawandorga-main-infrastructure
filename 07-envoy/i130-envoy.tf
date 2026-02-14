@@ -138,6 +138,67 @@ resource "kubernetes_manifest" "gateway" {
               }
             ]
           }
+        },
+        {
+          name     = "https-chat"
+          protocol = "HTTPS"
+          port     = 443
+          hostname = "chat.law-orga.de"
+          tls = {
+            mode = "Terminate"
+            certificateRefs = [
+              {
+                kind = "Secret"
+                name = "lawandorga-element-service-certificate"
+              }
+            ]
+          }
+          allowedRoutes = {
+            namespaces = {
+              from = "All"
+            }
+          }
+        }
+        ,
+        {
+          name     = "https-synapse"
+          protocol = "HTTPS"
+          port     = 443
+          hostname = "synapse.law-orga.de"
+          tls = {
+            mode = "Terminate"
+            certificateRefs = [
+              {
+                kind = "Secret"
+                name = "lawandorga-synapse-service-certificate"
+              }
+            ]
+          }
+          allowedRoutes = {
+            namespaces = {
+              from = "All"
+            }
+          }
+        },
+        {
+          name     = "https-openproject"
+          protocol = "HTTPS"
+          port     = 443
+          hostname = "openproject.law-orga.de"
+          tls = {
+            mode = "Terminate"
+            certificateRefs = [
+              {
+                kind = "Secret"
+                name = "openproject-certificate"
+              }
+            ]
+          }
+          allowedRoutes = {
+            namespaces = {
+              from = "All"
+            }
+          }
         }
       ]
       addresses = [
