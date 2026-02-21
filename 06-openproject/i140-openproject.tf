@@ -8,7 +8,7 @@ resource "helm_release" "openproject" {
   name       = "openproject"
   repository = "https://charts.openproject.org"
   chart      = "openproject"
-  version    = "13.0.2"
+  version    = "13.3.0"
   namespace  = kubernetes_namespace.openproject.metadata.0.name
 
   values = [
